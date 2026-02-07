@@ -1,2 +1,7 @@
 # mongodb_replicaset
-# mongodb_replicaset
+
+# user data
+user_data/
+
+# user scripts
+user_scripts/
