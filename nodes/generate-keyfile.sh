@@ -16,13 +16,23 @@ else
 
   echo "Generating keyfile from environment variable..."
   echo "$KEYFILE" > "$KEYFILE_PATH"
-  chown mongodb:mongodb "$KEYFILE_PATH"
-  chmod 600 "$KEYFILE_PATH"
 fi
 
-# Ensure the database directory exists
+# Ensure permissions are correct (we are running as root)
+echo "Setting permissions for $KEYFILE_PATH"
+chown mongodb:mongodb "$KEYFILE_PATH"
+chmod 400 "$KEYFILE_PATH"
+
+# Ensure the database directory exists and has correct permissions
 if [ ! -d "$DB_PATH" ]; then
   echo "Creating MongoDB data directory at $DB_PATH..."
   mkdir -p "$DB_PATH"
-  chown -R mongodb:mongodb "$DB_PATH"
 fi
+echo "Setting permissions for $DB_PATH"
+chown -R mongodb:mongodb "$DB_PATH"
+
+# Execute the command passed to the docker container
+# If arguments are passed (e.g. from CMD or ENTRYPOINT args in Dockerfile), run them
+# We expect the arguments to be the mongod command
+echo "Starting MongoDB..."
+exec gosu mongodb "$@"
