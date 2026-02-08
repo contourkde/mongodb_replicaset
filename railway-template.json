@@ -1,0 +1,62 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "services": {
+    "mongo-node-1": {
+      "path": "nodes",
+      "dockerfilePath": "Dockerfile",
+      "networking": {
+        "privateNetworking": true
+      },
+      "variables": {
+        "MONGO_INITDB_ROOT_USERNAME": "${MONGOUSERNAME}",
+        "MONGO_INITDB_ROOT_PASSWORD": "${MONGOPASSWORD}",
+        "REPLICA_SET_NAME": "${REPLICA_SET_NAME}",
+        "KEYFILE": "${KEYFILE}"
+      }
+    },
+    "mongo-node-2": {
+      "path": "nodes",
+      "dockerfilePath": "Dockerfile",
+      "networking": {
+        "privateNetworking": true
+      },
+      "variables": {
+        "MONGO_INITDB_ROOT_USERNAME": "${MONGOUSERNAME}",
+        "MONGO_INITDB_ROOT_PASSWORD": "${MONGOPASSWORD}",
+        "REPLICA_SET_NAME": "${REPLICA_SET_NAME}",
+        "KEYFILE": "${KEYFILE}"
+      }
+    },
+    "mongo-node-3": {
+      "path": "nodes",
+      "dockerfilePath": "Dockerfile",
+      "networking": {
+        "privateNetworking": true
+      },
+      "variables": {
+        "MONGO_INITDB_ROOT_USERNAME": "${MONGOUSERNAME}",
+        "MONGO_INITDB_ROOT_PASSWORD": "${MONGOPASSWORD}",
+        "REPLICA_SET_NAME": "${REPLICA_SET_NAME}",
+        "KEYFILE": "${KEYFILE}"
+      }
+    },
+    "init-service": {
+      "path": "initService",
+      "dockerfilePath": "Dockerfile",
+      "deploy": {
+        "restartPolicyType": "ON_FAILURE",
+        "restartPolicyMaxRetries": 3
+      },
+      "variables": {
+        "MONGOUSERNAME": "${MONGOUSERNAME}",
+        "MONGOPASSWORD": "${MONGOPASSWORD}",
+        "REPLICA_SET_NAME": "${REPLICA_SET_NAME}",
+        "MONGO_PORT": "27017",
+        "MONGO_PRIMARY_HOST": "${{mongo-node-1.RAILWAY_PRIVATE_DOMAIN}}",
+        "MONGO_REPLICA_HOST": "${{mongo-node-2.RAILWAY_PRIVATE_DOMAIN}}",
+        "MONGO_REPLICA2_HOST": "${{mongo-node-3.RAILWAY_PRIVATE_DOMAIN}}",
+        "RAILWAY_API_TOKEN": "${RAILWAY_API_TOKEN}"
+      }
+    }
+  }
+}
