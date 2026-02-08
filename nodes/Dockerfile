@@ -19,4 +19,4 @@ ARG REPLICA_SET_NAME
 # The entrypoint script will switch to the mongodb user using gosu
 
 ENTRYPOINT ["/generate-keyfile.sh"]
-CMD ["bash", "-c", "exec mongod --replSet $REPLICA_SET_NAME --auth --keyFile /data/keyfile --ipv6 --bind_ip ::,0.0.0.0"]
+CMD ["bash", "-c", "exec docker-entrypoint.sh mongod --replSet $REPLICA_SET_NAME --auth --keyFile /data/keyfile --ipv6 --bind_ip ::,0.0.0.0"]
