@@ -1,5 +1,5 @@
 # Base image
-FROM mongo:latest
+FROM mongodb/mongodb-community-server:8.2.4-ubuntu2204
 
 # Install curl
 RUN apt-get update && apt-get install -y curl
