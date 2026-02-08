@@ -1,5 +1,5 @@
 # Base image
-FROM mongodb/mongodb-community-server:8.2.4-ubi9
+FROM mongodb/mongodb-community-server:8.2.4-ubuntu2204
 
 # Copy the initiation script into the container
 COPY generate-keyfile.sh /generate-keyfile.sh
