@@ -75,21 +75,9 @@ if initiate_replica_set; then
   echo "*                                                        *"
   echo "*           Replica set initiated successfully.          *"
   echo "*                                                        *"
-  echo "*              DELETING THIS SERVICE...                  *"
+  echo "*              PLEASE DELETE THIS SERVICE.               *"
   echo "*                                                        *"
   echo "**********************************************************"
-  
-  if [ -n "$RAILWAY_API_TOKEN" ] && [ -n "$RAILWAY_SERVICE_ID" ]; then
-    echo "Deleting service: $RAILWAY_SERVICE_ID"
-    curl -X POST \
-      -H "Content-Type: application/json" \
-      -H "Authorization: Bearer $RAILWAY_API_TOKEN" \
-      -d "{\"query\": \"mutation { serviceDelete(id: \\\"$RAILWAY_SERVICE_ID\\\") }\"}" \
-      https://backboard.railway.app/graphql/v2
-  else
-    echo "Skipping deletion: RAILWAY_API_TOKEN or RAILWAY_SERVICE_ID not set."
-  fi
-
   exit 0
 else
   echo "**********************************************************"
