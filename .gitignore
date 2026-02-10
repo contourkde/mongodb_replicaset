@@ -5,3 +5,7 @@ user_data/
 
 # user scripts
 user_scripts/
+
+
+.env
+.env.local

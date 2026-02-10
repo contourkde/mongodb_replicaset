@@ -16,11 +16,13 @@ else
 
   echo "Generating keyfile from environment variable..."
   echo "$KEYFILE" > "$KEYFILE_PATH"
-  chmod 400 "$KEYFILE_PATH"
+  chown mongodb:mongodb "$KEYFILE_PATH"
+  chmod 600 "$KEYFILE_PATH"
 fi
 
 # Ensure the database directory exists
 if [ ! -d "$DB_PATH" ]; then
   echo "Creating MongoDB data directory at $DB_PATH..."
   mkdir -p "$DB_PATH"
+  chown -R mongodb:mongodb "$DB_PATH"
 fi

@@ -5,10 +5,8 @@ FROM mongodb/mongodb-community-server:8.2.4-ubuntu2204
 COPY generate-keyfile.sh /generate-keyfile.sh
 
 # Make the script executable
-USER root
 RUN chmod +x /generate-keyfile.sh
-USER mongodb
 
 ARG REPLICA_SET_NAME
 
-ENTRYPOINT ["/bin/bash", "-c", "/generate-keyfile.sh && exec /usr/local/bin/docker-entrypoint.sh mongod --replSet $REPLICA_SET_NAME --auth --keyFile /data/keyfile --ipv6 --bind_ip ::,0.0.0.0"]
+ENTRYPOINT ["/bin/bash", "-c", "/generate-keyfile.sh && exec docker-entrypoint.sh mongod --replSet $REPLICA_SET_NAME --auth --keyFile /data/keyfile --ipv6 --bind_ip ::,0.0.0.0"]
