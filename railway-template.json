@@ -8,8 +8,8 @@
         "privateNetworking": true
       },
       "variables": {
-        "MONGO_INITDB_ROOT_USERNAME": "${MONGOUSERNAME}",
-        "MONGO_INITDB_ROOT_PASSWORD": "${MONGOPASSWORD}",
+        "MONGODB_INITDB_ROOT_USERNAME": "${MONGOUSERNAME}",
+        "MONGODB_INITDB_ROOT_PASSWORD": "${MONGOPASSWORD}",
         "REPLICA_SET_NAME": "${REPLICA_SET_NAME}",
         "KEYFILE": "${KEYFILE}"
       }
@@ -21,8 +21,8 @@
         "privateNetworking": true
       },
       "variables": {
-        "MONGO_INITDB_ROOT_USERNAME": "${MONGOUSERNAME}",
-        "MONGO_INITDB_ROOT_PASSWORD": "${MONGOPASSWORD}",
+        "MONGODB_INITDB_ROOT_USERNAME": "${MONGOUSERNAME}",
+        "MONGODB_INITDB_ROOT_PASSWORD": "${MONGOPASSWORD}",
         "REPLICA_SET_NAME": "${REPLICA_SET_NAME}",
         "KEYFILE": "${KEYFILE}"
       }
@@ -34,8 +34,8 @@
         "privateNetworking": true
       },
       "variables": {
-        "MONGO_INITDB_ROOT_USERNAME": "${MONGOUSERNAME}",
-        "MONGO_INITDB_ROOT_PASSWORD": "${MONGOPASSWORD}",
+        "MONGODB_INITDB_ROOT_USERNAME": "${MONGOUSERNAME}",
+        "MONGODB_INITDB_ROOT_PASSWORD": "${MONGOPASSWORD}",
         "REPLICA_SET_NAME": "${REPLICA_SET_NAME}",
         "KEYFILE": "${KEYFILE}"
       }

@@ -17,18 +17,14 @@ else
   echo "Generating keyfile from environment variable..."
   echo "$KEYFILE" > "$KEYFILE_PATH"
   chmod 400 "$KEYFILE_PATH"
+  chown mongodb:mongodb "$KEYFILE_PATH"
 fi
 
-# Ensure the database directory exists
-# We trust the volume mount or base image to handle /data/db permissions, 
-# or we just try to create it if missing, but avoiding chown if we are not root.
+# Ensure the database directory exists and has correct permissions
 if [ ! -d "$DB_PATH" ]; then
   echo "Creating MongoDB data directory at $DB_PATH..."
   mkdir -p "$DB_PATH"
 fi
 
-# DEBUG: Check where docker-entrypoint.sh might be
-echo "Listing /usr/local/bin to find entrypoint:"
-ls -la /usr/local/bin/docker-entrypoint* || echo "No docker-entrypoint found in /usr/local/bin"
-echo "Listing /usr/bin to find entrypoint:"
-ls -la /usr/bin/docker-entrypoint* || echo "No docker-entrypoint found in /usr/bin"
+# Ensure mongodb user owns the data directory
+chown -R mongodb:mongodb "$DB_PATH"
