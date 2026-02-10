@@ -6,4 +6,4 @@ COPY --chown=mongodb:mongodb --chmod=755 generate-keyfile.sh /generate-keyfile.s
 
 ARG REPLICA_SET_NAME
 
-ENTRYPOINT ["/bin/bash", "-c", "/generate-keyfile.sh && ( [ -f /usr/local/bin/docker-entrypoint.sh ] && exec /usr/local/bin/docker-entrypoint.sh mongod --replSet $REPLICA_SET_NAME --auth --keyFile /tmp/keyfile --ipv6 --bind_ip ::,0.0.0.0 || exec docker-entrypoint.sh mongod --replSet $REPLICA_SET_NAME --auth --keyFile /tmp/keyfile --ipv6 --bind_ip ::,0.0.0.0 )"]
+ENTRYPOINT ["/bin/bash", "-c", "/generate-keyfile.sh && exec python3 /usr/local/bin/docker-entrypoint.py mongod --replSet $REPLICA_SET_NAME --auth --keyFile /tmp/keyfile --ipv6 --bind_ip ::,0.0.0.0"]
