@@ -6,6 +6,9 @@ user_data/
 # user scripts
 user_scripts/
 
+# dependencies
+node_modules/
+
 
 .env
 .env.local

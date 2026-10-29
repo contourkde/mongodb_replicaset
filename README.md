@@ -4,7 +4,7 @@ This repo contains the resources required to deploy a Mongo replica set in Railw
 
 To deploy your own Mongo replica set in Railway, just click the button below!
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/LUqXvC?referralCode=-96QSv&utm_medium=integration&utm_source=template&utm_campaign=generic)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/mongodb-community-server-replica-set)
 
 
 ### About the MongoDB Nodes
@@ -13,7 +13,7 @@ The MongoDB nodes in the replica set are built from the [Mongo CE image in Docke
 
 ### About the Init Service
 
-The init service is used to execute the required command against MongoDB to initiate the replica set. Upon completion, it deletes itself via the Railway public API.
+The init service is used to execute the required command against MongoDB to initiate the replica set. It waits for all three nodes, runs `rs.initiate()`, and exits. Delete the service after the first successful deployment — the replica set keeps running without it.
 
 ## Example Apps
 
